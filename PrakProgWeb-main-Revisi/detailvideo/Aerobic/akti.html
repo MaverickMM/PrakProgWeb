@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Kotak 1</h1>
+        <p>
+            Lorem ipsum dolor sit, amet consectetur <span id="adipisicing" class="bolder italicer">adipisicing</span>elit.Cum culpa
+            fugiat temporibus sed minus voluptatum <span class="bolder">veritatis </span> recusandae? Accusantium
+            consequuntur error nesciunt impedit repudiandae, tempora velit officia voluptatum! Blanditiis, <span class="bolder italicer">nisi</span> ipsam!
+        </p>
+    </div>
+
+
+        <div> 
+            <h1>Kotak 2</h1>
+            <div>
+                <h2>Kotak dalam 1</h2>
+                <ol class="orderedlist">
+                    <li>ol option 1</1i>
+                    <li>ol option 2</1li>
+                    <li>ol option 3</1i>
+                </ol>
+            </div>
+            <div>
+                <h2>Kotak dalam 2</h2>
+                <ol class="orderedlist">
+                    <li>ol option 1</1i>
+                    <li>ol option 2</1i>
+                    <li>ol option 3</1i>
+                </ol>
+                <ul class="orderedlist">
+                    <li>ul option 1</li>
+                    <li>ul option 2</1i>
+                    <li>ul option 3</1i>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <h1>Kotak 3</h1>
+            Lorem ipsum <span id="siDolor" class="bolder">dolor</span> sit, amet consectetur adipisicing elit. Aliquid,
+            doloremque eos.
+            Odit dolor corporis quasi hic quos provident quis <span class="bolder italicer">fugiat</span> laborum
+            numquam
+            facere,
+            asperiores minima dolorum similique dignissimos <span class="italicer">fuga </span>.
+            </p>
+        </div>
+
+
+        <script>
+            const collection = document.getElementsByClassName("bolder italicer");
+            collection[1].innerText;
+    
+            const myElement = document.getElementById("adipisicing");
+            myElement.style.fontWeight = "bold";
+            const collection1 = document.getElementsByClassName("bolder italicer");
+            // collection1[1].style.fontWeight = "bold";
+            // collection1[2].style.fontWeight = "bold";
+            // collection1[1].style.fontStyle = "italic";
+            // collection1[2].style.fontStyle = "italic";
+            collection1[3].style.fontStyle = "italic";
+
+
+            const collection2 = document.getElementsByClassName("bolder");
+            collection2[3].style.fontWeight = "bold";
+
+            const collection3 = document.getElementsByClassName("italicer");
+            collection3[3].style.fontStyle = "italic";
+
+
+
+
+
+
+            
+    
+            // const myElement1 = document.getElementById("adipisicing");
+            // myElement1.style.fontWeight = "bold";
+            // const collection2 = document.getElementsByClassName("bolder");
+            // collection2[3].style.fontWeight = "bold";
+        </script>
+
+</body>
+
+
+
+</html>
