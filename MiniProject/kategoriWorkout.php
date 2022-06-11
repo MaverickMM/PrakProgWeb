@@ -1,5 +1,7 @@
 <?php
-
+session_start();
+$_SESSION['idKategori'] = null;
+unset($_SESSION['idKategori']);
 //connect to database
 $servername = "127.0.0.1";
 $username = "root";
@@ -17,9 +19,14 @@ $result = mysqli_query($conn, $sqlquery);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="text/javascript" src="index.js">
+
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/tombol.css?v=<?php echo time(); ?>">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
@@ -27,25 +34,73 @@ $result = mysqli_query($conn, $sqlquery);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>GoFit</title>
-    <link rel="shortcut icon" href="logo/Logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="logo/Logo2.png" type="image/x-icon">
 </head>
-<body>
-    <header class="topnav">
-        <a class="logolink"href="home.html"><img class="logoimage"src ="logo/Logo.png"></a>
 
-        <nav class="header-center">
-            <a href="home.html">Home</a>
-            <a class="active" href="Workouts.html">Workouts</a>
-            <a href="Training.html">Training</a>
-            <a href = "#">About</a>
-            <a href = "#">Contact</a>
-        </nav>
 
-        <div class="search-container">
-            <input type="search" placeholder="Search Workouts...">
-            <button type="submit"><i class="fa fa-search"></i></button>
+<?php
+if( !isset($_SESSION["login"])){
+    ?>
+        <body onload="undisplay()">
+    <?php
+
+}else{
+    ?>
+    <body onload ="transform()">
+<?php
+}
+
+?>
+
+
+<header class="topnav">
+    <a class="logolink"href="index.php"><img class="logoimage"src ="logo/Logo1.png"></a>
+
+    <nav class="header-center">
+      <a href="index.php">Home</a>
+      <a class="active" href="kategoriWorkout.php">Workouts</a>
+      <a href="kategoriTraining.php">Training</a>
+      <a href = "#">About</a>
+      <a href = "#">Contact</a>
+      <div class="search-container">
+        <div class="searcing">
+          <input type="search" placeholder="Search Workouts...">
+          <button type="submit"><i class="fa fa-search"></i></button>
         </div>
-    </header>
+      </div>
+    </nav>
+
+    <div class="signinout" >
+      <a id="signinout" href="adminlogin.php">
+        <p id="content-signinout" style="font-size:24px;">
+          Login
+          <i class="fa fa-sign-in" aria-hidden="true"style="font-size:34px;"></i>
+        </p>
+      </a>
+    </div>
+  </header>
+    <div class="crudKategori">
+      <a href="formKategoriWorkout/addKategori.php">
+        <button class = "displayButton" id = "bttn-tambah"> 
+          <i class="fa fa-plus" aria-hidden="true" style="font-size:24px"></i> 
+          Tambah Kategori
+        </button>
+      </a>
+
+      <a href="formKategoriWorkout/delKategori.php">
+        <button class = "displayButton" id = "bttn-delete">
+          <i class="fa fa-trash-o" style="font-size:24px"></i>  
+          Delete Kategori 
+        </button>
+      </a>
+
+      <a href="formKategoriWorkout/updKategori.php">
+        <button class = "displayButton" id = "bttn-update">
+          <i class='fa fa-edit' style='font-size:24px'></i> 
+          Update Kategori 
+        </button>
+      </a>
+    </div>
 
     <main>
     <?php
@@ -76,7 +131,7 @@ $result = mysqli_query($conn, $sqlquery);
         <?php
       if($counter == 3){
             echo "</section>";
-            $counter = 0;
+            $counter = 1;
             $opensection = 0;
         }else {
             $counter += 1;
@@ -91,7 +146,7 @@ $result = mysqli_query($conn, $sqlquery);
     <footer>
 
         <div class="logo">
-            <img src="logo/Logo.png" alt="">
+            <img src="logo/Logo1.png" alt="">
             <p>Wellness for the People</p>
         </div>
 

@@ -10,8 +10,44 @@ body {
   padding: 0;
   font-family: 'Fredoka', sans-serif;
   font-weight: regular;
-  background-image: linear-gradient( 15deg, #FAB2FF 5%, #5151E5 100%);
+  background: linear-gradient(90deg, #C7C5F4, #776BCC);
   
+}
+
+
+
+.signinout {
+  float: right;
+  margin-right: 30px;
+  position: relative;
+  bottom:7px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.signinout a:hover{
+  color: white;
+  transition: 0.5s;
+  transform: scale(1.08);
+  cursor: pointer;
+
+}
+
+.signinout i{
+  position: relative;
+  top: 5px;
+  left:3px;
+  cursor: pointer;
+}
+
+.signinout a{
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.header-center{
+  position: relative;
+  top: 7px;
 }
 
 .logoimage{
@@ -35,6 +71,15 @@ body {
   z-index:100;
 }
 
+
+.search-container{
+  display:flex;
+  position: relative;
+  bottom: 4.7px;
+  padding-left: 280px;
+  padding-right: 0px;
+}
+
 .topnav a {
   float: left;
   display: block;
@@ -43,10 +88,11 @@ body {
   padding: 8px 16px 0px;
   text-decoration: none;
   font-size: 22px;
+  cursor: pointer;
 
 }
 
-.topnav a::after{
+.topnav .header-center a::after{
     content: '';
     width: 0%;
     height: 6px;
@@ -57,24 +103,25 @@ body {
 
 }
 
-.topnav a:hover::after{
+.topnav .header-center a:hover::after{
     width: 100%;
     background: #4895ef;
     transition:1s;
 }
 
-.topnav a.active:hover::after{
+.topnav .header-center a.active:hover::after{
     width: 0%;
 }
 
-.topnav a.logolink:hover::after{
+.topnav .header-center a.logolink:hover::after{
   width: 0%;
 }
 
 
-  .topnav a.active {
+  .topnav .header-center a.active {
     color: white;
   }
+
 
 
 .topnav input[type=search] {
@@ -106,9 +153,9 @@ input[type="search"]:focus::-webkit-search-cancel-button {
 }
 
 .topnav .search-container button {
-  padding: 9px 13px;
-  margin-top: 8px;
-  margin-right: 16px;
+  padding: 11px 15px;
+  margin-top:-10px;
+  margin-right: 0px;
   background: #ddd;
   font-size: 17px;
   border: none;
@@ -116,6 +163,7 @@ input[type="search"]:focus::-webkit-search-cancel-button {
   border-radius:150%;
   margin-bottom: 10px;
   color:#08090A;
+  position: relative;
   
 }
 
@@ -311,36 +359,36 @@ a.main-button-slider:hover {
 
 #before1{
 
-  background: url("image/resize3.jpg") no-repeat;
+  background: url("homeimage/resize3.jpg") no-repeat;
   background-size: cover;
 
 }
 
 #button2:hover + .homeimg>#before1{
 
-  background: url("image/after1.jpg") no-repeat;
+  background: url("homeimage/after1.jpg") no-repeat;
   background-size: cover;
 }
 
 #before2{
 
-  background: url("image/before2-resize.jpg") no-repeat;
+  background: url("homeimage/before2-resize.jpg") no-repeat;
   background-size: cover;
 }
 
 #button2:hover + .homeimg>#before2{
-  background: url("image/after2-resize.jpg") no-repeat;
+  background: url("homeimage/after2-resize.jpg") no-repeat;
   background-size: cover;
   
 }
 
 #button1:hover + #button2 + .homeimg>#before1{
-  background: url("image/after1.jpg") no-repeat;
+  background: url("homeimage/after1.jpg") no-repeat;
   background-size: cover;
 }
 
 #button1:hover + #button2 + .homeimg>#before2{
-  background: url("image/after2-resize.jpg") no-repeat;
+  background: url("homeimage/after2-resize.jpg") no-repeat;
   background-size: cover;
 }
 
@@ -437,6 +485,11 @@ a.main-button-slider:hover {
 #video-overlay span{
   left:26%;
   top: 45%;
+}
+
+.video-card:hover p{
+  opacity: 0;
+  transition: 0.6s;
 }
 
 .video-card:hover h3, .video-card:hover .menu-title,.video-card:hover .views{
@@ -702,51 +755,4 @@ dt,p{
 
 .video-detail{
   padding: 3px 10px 20px 20px;
-}
-
-#tambahVideo{
-  background: #00FFAB;
-  border:none;
-  width: 170px;
-  height: 55px;
-  border-radius: 15px;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.5s;
-  margin-right: 15px;
-
-
-}
-
-#tambahVideo:hover{
-  transition: 0.5s;
-  transform: scale(1.04);
-  box-shadow: 5px 5px rgba(255, 55, 96,0.5);
-}
-
-#deleteVideo{
-  background: 	#ff1e4c;
-  border:none;
-  color:white;
-  position: relative;
-  top:2.1px;
-  width: 170px;
-  height: 55px;
-  border-radius: 15px;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.5s;
-}
-
-#deleteVideo:hover{
-  transition: 0.5s;
-  transform: scale(1.04);
-  box-shadow: 5px 5px rgba(0, 255, 170, 0.736);
-}
-
-#editVideo{
-  float: right;
-  position: relative;
-  bottom:65px;
-  right : 30px;
 }
