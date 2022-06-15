@@ -2,23 +2,29 @@
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
-$databasename = "gofit";
+$databasename = "uas";
 $conn = mysqli_connect($servername, $username, $password, $databasename) or die("Koneksi gagal.");
+
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
-    $sqlKategori = "SELECT * FROM ketegori WHERE idKategori = '$id'";
+    $sqlKategori = "SELECT * FROM kategori WHERE idKategori = '$id'";
     // ! Run Query
     $runQuery = mysqli_query($conn, $sqlKategori);
     $resultKategori = mysqli_fetch_assoc($runQuery);
+
     //! ambil value dari kategori yang dipilih
     $nama = $resultKategori["namaKategori"];
     $deskripsi = $resultKategori["deskripsiKategori"];
     $locImg = $resultKategori["imgKategori"];
+    $tipe_kategori = $resultKategori["tipe_kategori"];
 }
 // else{
 //     header("Location:../kategoriWorkout.php" );
 // }
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,8 +39,8 @@ if (isset($_GET["id"])) {
 <body>
     <div id="input-form">
         <h1>Update Category Form</h1>
-        <form action="formUpdate.php?id=<?php echo $id ?>" method="POST" name="formTambahData"
-            enctype="multipart/form-data">
+        <form action="formUpdate.php?id=<?php echo $id ?>" method="POST" name="formTambahData" enctype="multipart/form-data">
+
             <div class="Kategori-image">
                 <div class="form-element">
                     <input type="file" id="foto" name="foto">
@@ -43,34 +49,51 @@ if (isset($_GET["id"])) {
                     </label>
                 </div>
             </div>
+
+
             <div class="DetailKategori-label">
                 <label for="nama"> Nama Kategori : </label>
                 <br>
                 <input type="text" id="nama" name="nama" required value="<?php echo $nama; ?>">
             </div>
+
             <div class="DetailKategori-label">
                 <label for="deskripsi"> Deskripsi Kategori : </label>
                 <br>
-                <textarea name="deskripsi" id="deskripsi" cols="30" rows="10"
-                    required> <?php echo $deskripsi; ?> </textarea>
+                <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" required> <?php echo $deskripsi; ?> </textarea>
+            </div>
+
+            <div class="DetailKategori-label">
+                <label for="kesulitanVideo"> Kesulitan Video : </label>
+                <br>
+                <select name="tipeKategori" id="tipeKategori" required>
+                    <option value="Workouts" <?php echo $tipe_kategori == 'Workouts' ? 'selected="selected"' : '' ?>>Workouts</option>
+                    <option value="Training" <?php echo $tipe_kategori == 'Training' ? 'selected="selected"' : '' ?>>Training</option>
+                </select>
             </div>
             <div class="DetailKategori-label">
                 <button type="submit" name="submit"> Update </button>
             </div>
         </form>
     </div>
+
     <?php
+
     if ($_POST) {
         if (isset($_FILES['foto'])) {
             $namaKategori = $_POST["nama"];
             $deskripsiKategori = $_POST["deskripsi"];
+            $tipe_kategori = $_POST["tipeKategori"];
+
             //Data Gambar Video
             $date = time();
             $filegambar = $_FILES["foto"]["tmp_name"];
             $namaGambar = $_FILES["foto"]["name"];
+
             //ekstrak extensi file gambar
             $str_to_arry = explode('.', $namaGambar);
             $extension = end($str_to_arry);
+
             if ($extension == "jpg" || $extension == "jpeg" || $extension == "png" || $extension == "jfif") {
                 // !pisahkan spasi di nama file
                 $deletespace = explode(' ', $str_to_arry[0]);
@@ -78,20 +101,18 @@ if (isset($_GET["id"])) {
                 $newname = $newfilename . "-" . $date . "." . $extension;
                 $uploadfile1 = "kategori/" . $newname;
                 $uploadfile2 = "../kategori/" . $newname;
-                $filebefore = "SELECT imgKategori FROM ketegori WHERE idKategori = '$id'";
-                $run = mysqli_query($conn, $filebefore);
-                $selectfile = mysqli_fetch_assoc($run);
-                unlink("../" . $selectfile["imgKategori"]);
+
                 // ! insert file ke database
-                $queryInsert = "UPDATE ketegori 
-            SET namaKategori = '$namaKategori', deskripsiKategori = '$deskripsiKategori',imgKategori = '$uploadfile1'
+                $queryInsert = "UPDATE kategori 
+            SET namaKategori = '$namaKategori', deskripsiKategori = '$deskripsiKategori',imgKategori = '$uploadfile1',tipe_kategori = '$tipe_kategori'
             WHERE
             idKategori = '$id'";
+
                 if (move_uploaded_file($filegambar, $uploadfile2)) {
                     if (mysqli_query($conn, $queryInsert)) {
                         echo "
                         <script>
-                            alert('Data Kategori Berhasil Diubah');
+                            alert('Data Kategori 321Berhasil Diubah');
                             document.location.href = '../kategoriWorkout.php';
                         </script>
                     ";
@@ -99,7 +120,7 @@ if (isset($_GET["id"])) {
                 } else {
                     echo "
                 <script>
-                    alert('Data Foto Gagal Diubah');
+                    alert('Data Foto Gagalxzsadsad Diubah');
                     window.location.href = window.location.href;
                 </script>
             ";
@@ -108,9 +129,12 @@ if (isset($_GET["id"])) {
         } else {
             $namaKategori = $_POST["nama"];
             $deskripsiKategori = $_POST["deskripsi"];
+
+
+
             // ! insert file ke database
-            $queryInsert = "UPDATE ketegori 
-            SET namaKategori = '$namaKategori', deskripsiKategori = '$deskripsiKategori'
+            $queryInsert = "UPDATE kategori 
+            SET namaKategori = '$namaKategori', deskripsiKategori = '$deskripsiKategori',tipe_kategori = '$tipe_kategori'
             WHERE
             idKategori = '$id'";
             if (mysqli_query($conn, $queryInsert)) {
@@ -132,18 +156,19 @@ if (isset($_GET["id"])) {
     }
     ?>
 </body>
+
 <script>
-function previewBeforeUpload(id) {
-    document.querySelector("#" + id).addEventListener("change", function(e) {
-        if (e.target.files.length == 0) {
-            return;
-        }
-        let file = e.target.files[0];
-        let url = URL.createObjectURL(file);
-        document.querySelector("#file-preview img").src = url;
-    });
-}
-previewBeforeUpload("foto");
+    function previewBeforeUpload(id) {
+        document.querySelector("#" + id).addEventListener("change", function(e) {
+            if (e.target.files.length == 0) {
+                return;
+            }
+            let file = e.target.files[0];
+            let url = URL.createObjectURL(file);
+            document.querySelector("#file-preview img").src = url;
+        });
+    }
+    previewBeforeUpload("foto");
 </script>
 
 </html>

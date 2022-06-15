@@ -4,7 +4,7 @@ session_start();
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
-$databasename = "gofit";
+$databasename = "uas";
 $conn = mysqli_connect($servername, $username, $password, $databasename) or die("Koneksi gagal.");
 $idKategori = $_SESSION["idKategori"];
 $query = "SELECT * FROM video WHERE idKategori='$idKategori'";

@@ -2,9 +2,9 @@
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
-$databasename = "gofit";
+$databasename = "uas";
 $conn = mysqli_connect($servername, $username, $password, $databasename) or die("Koneksi gagal.");
-$query = "SELECT * FROM ketegori";
+$query = "SELECT * FROM kategori";
 $runQuery = mysqli_query($conn, $query);
 if (mysqli_num_rows($runQuery) < 1) {
     header("Location:../kategoriWorkout.php");

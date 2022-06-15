@@ -4,14 +4,15 @@ session_start();
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
-$databasename = "gofit";
+$databasename = "uas";
 $conn = mysqli_connect($servername, $username, $password, $databasename) or die("Koneksi gagal.");
+
 ?>
 <?php
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $_SESSION["idKategori"] = $id;
-    $sqlKategori = "SELECT * FROM ketegori WHERE idKategori = '$id'";
+    $sqlKategori = "SELECT * FROM kategori WHERE idKategori = '$id'";
     $sqlVideo = "SELECT * FROM video WHERE idKategori = '$id'";
     // ! Run Query
     $resultKategori = mysqli_query($conn, $sqlKategori);

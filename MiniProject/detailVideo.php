@@ -4,7 +4,7 @@ session_start();
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
-$databasename = "gofit";
+$databasename = "uas";
 $conn = mysqli_connect($servername, $username, $password, $databasename) or die("Koneksi gagal.");
 if (isset($_GET["id"])) {
   $id = $_GET["id"];
@@ -19,7 +19,7 @@ if (isset($_GET["id"])) {
   $idKategori = $arrayVideo['idKategori'];
   $idPelatih = $arrayIdPelatih["idPelatih"];
   $selectPelatih = "SELECT * FROM pelatih where idPelatih = '$idPelatih'";
-  $selectKategori = "SELECT * FROM ketegori where idKategori = '$idKategori'";
+  $selectKategori = "SELECT * FROM kategori where idKategori = '$idKategori'";
   $resultKategori = mysqli_query($conn, $selectKategori);
   $arrayKategori = mysqli_fetch_assoc($resultKategori);
   $resultPelatih = mysqli_query($conn, $selectPelatih);
